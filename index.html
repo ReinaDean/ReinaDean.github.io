@@ -113,8 +113,8 @@
 
         /* Project Grid */
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 1.5rem;
         }
 
@@ -123,34 +123,54 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            transition: border-color 0.2s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-3px);
             border-color: var(--accent-color);
         }
 
-        .project-title {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            text-decoration: none;
+        .project-heading {
+            font-size: 1.25rem;
+            color: #ffffff;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        .project-title:hover {
-            text-decoration: underline;
         }
 
         .project-desc {
             color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 1rem;
+        }
+
+        /* PDF Viewer Styling */
+        details {
+            margin-top: 0.5rem;
+        }
+
+        summary {
+            color: var(--accent-color);
+            cursor: pointer;
+            font-weight: 600;
+            user-select: none;
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 6px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        summary:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 500px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-top: 1rem;
         }
 
         /* Responsive Design */
@@ -163,6 +183,10 @@
             .social-links {
                 justify-content: center;
             }
+
+            .pdf-viewer {
+                height: 350px;
+            }
         }
     </style>
 </head>
@@ -171,7 +195,7 @@
     <div class="container">
         <!-- Header / Profile Info -->
         <header>
-            <!-- Replace 'headshot.jpg' with the actual path or URL of your headshot image -->
+            <!-- Ensure your image is named 'headshot.jpg' and saved in the same folder -->
             <img src="headshot.jpg" alt="Reina Dean Headshot" class="headshot">
             <div class="header-text">
                 <h1>Reina Dean</h1>
@@ -211,18 +235,30 @@
                 
                 <!-- Project 1 -->
                 <div class="project-card">
-                    <div>
-                        <a href="#" class="project-title">Streetwear Photography Project</a>
-                        <p class="project-desc">A showcase of streetwear photography focused on visual storytelling, aesthetics, and brand identity.</p>
-                    </div>
+                    <h3 class="project-heading">Streetwear Photography Project</h3>
+                    <p class="project-desc">A showcase of streetwear photography focused on visual storytelling, aesthetics, and brand identity.</p>
+                    
+                    <details>
+                        <summary>View Project PDF</summary>
+                        <!-- Make sure 'streetwear-photography.pdf' is uploaded to your main folder -->
+                        <object data="streetwear-photography.pdf" type="application/pdf" class="pdf-viewer">
+                            <p>Your browser doesn't support inline PDFs. <a href="streetwear-photography.pdf" target="_blank">Click here to open or download the PDF.</a></p>
+                        </object>
+                    </details>
                 </div>
 
                 <!-- Project 2 -->
                 <div class="project-card">
-                    <div>
-                        <a href="#" class="project-title">Aerie Mock Direct Mail Marketing</a>
-                        <p class="project-desc">A targeted mock direct mail marketing campaign designed for Aerie, highlighting visual layout and promotional strategies.</p>
-                    </div>
+                    <h3 class="project-heading">Aerie Mock Direct Mail Marketing</h3>
+                    <p class="project-desc">A targeted mock direct mail marketing campaign designed for Aerie, highlighting visual layout and promotional strategies.</p>
+                    
+                    <details>
+                        <summary>View Project PDF</summary>
+                        <!-- Make sure 'aerie-marketing.pdf' is uploaded to your main folder -->
+                        <object data="aerie-marketing.pdf" type="application/pdf" class="pdf-viewer">
+                            <p>Your browser doesn't support inline PDFs. <a href="aerie-marketing.pdf" target="_blank">Click here to open or download the PDF.</a></p>
+                        </object>
+                    </details>
                 </div>
 
             </div>
