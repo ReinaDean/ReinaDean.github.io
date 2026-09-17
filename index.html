@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reina Dean - Portfolio</title>
+    <title>Reina Dean - Digital Portfolio</title>
+    <!-- Simple icon font for LinkedIn/TikTok -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Modern Dark Theme Variables */
+        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --border-color: #30363d;
-            --text-color: #c9d1d9;
-            --text-muted: #8b949e;
-            --accent-color: #58a6ff;
-            --accent-hover: #1f6feb;
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* VIBRANT SUNSET PALETTE */
+            --bg-top: #df406e;   /* Pink */
+            --bg-mid: #f07e60;   /* Coral/Orange */
+            --bg-bottom: #fbb03b; /* Golden Yellow */
+            
+            --text-main: #FFFFFF;
+            --text-muted: rgba(255, 255, 255, 0.8);
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            
+            /* GLASSMORPHISM EFFECT */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-blur: blur(10px);
+            
+            /* SOFT GLOW */
+            --box-shadow: 0 8px 32px 0 rgba(100, 30, 30, 0.15);
+            --glow-hover: 0 0 15px rgba(251, 176, 59, 0.5); /* Yellow glow */
         }
 
         * {
@@ -24,168 +35,225 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            /* Full Sunset Gradient Background */
+            background: linear-gradient(170deg, var(--bg-top), var(--bg-mid), var(--bg-bottom));
+            background-attachment: fixed; /* Keeps gradient stationary */
+            color: var(--text-main);
             font-family: var(--font-family);
             line-height: 1.6;
-            padding: 2rem 1rem;
+            padding: 3rem 1.5rem;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
         }
 
-        /* Profile Header */
+        /* --- THEME HELPER CLASSES --- */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(100, 30, 30, 0.2), var(--glow-hover);
+        }
+
+        /* --- SECTION TITLES --- */
+        h2.section-title {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        /* --- HEADER / PROFILE --- */
         header {
             display: flex;
             align-items: center;
-            gap: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 2rem;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .headshot-container {
+            position: relative;
         }
 
         .headshot {
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--border-color);
+            border: 4px solid #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            display: block;
         }
 
         .header-text h1 {
-            font-size: 2.2rem;
-            color: #ffffff;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.2rem;
+            line-height: 1.1;
         }
 
-        .header-text p {
+        .header-text p.title {
             color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-top: 0.25rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-top: 0;
+            opacity: 0.9;
         }
 
         .social-links {
-            margin-top: 1rem;
+            margin-top: 1.2rem;
             display: flex;
-            gap: 1.2rem;
+            gap: 1.5rem;
+            font-size: 1.6rem;
         }
 
         .social-links a {
-            color: var(--accent-color);
+            color: #ffffff;
             text-decoration: none;
-            font-weight: 500;
+            opacity: 0.8;
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
         .social-links a:hover {
-            text-decoration: underline;
+            opacity: 1;
+            transform: scale(1.1);
         }
 
-        /* Section Styling */
-        section {
-            margin-bottom: 2.5rem;
+        /* --- ABOUT SECTION --- */
+        #about p {
+            font-size: 1.1rem;
+            opacity: 0.95;
         }
 
-        h2 {
-            font-size: 1.5rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-        }
-
-        /* Skills Badges */
+        /* --- SKILLS SECTION (Glow Tags) --- */
         .skills-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
+            gap: 0.8rem;
             list-style: none;
         }
 
         .skill-tag {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 0.4rem 0.9rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.95rem;
-            color: var(--accent-color);
+            font-weight: 500;
+            transition: background 0.2s, box-shadow 0.2s;
         }
 
-        /* Project Grid */
+        .skill-tag:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- PROJECTS SECTION --- */
         .projects-grid {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: border-color 0.2s ease;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent-color);
+            gap: 2rem;
         }
 
         .project-heading {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: #ffffff;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .project-desc {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
         }
 
-        /* PDF Viewer Styling */
+        /* --- PDF VIEWER STYLING (The Button/Summary) --- */
         details {
             margin-top: 0.5rem;
         }
 
         summary {
-            color: var(--accent-color);
-            cursor: pointer;
-            font-weight: 600;
-            user-select: none;
+            list-style: none; /* Hide default arrow */
             display: inline-block;
-            padding: 0.4rem 0.8rem;
-            border: 1px solid var(--accent-color);
-            border-radius: 6px;
-            transition: background-color 0.2s ease, color 0.2s ease;
+            cursor: pointer;
+            padding: 0.6rem 1.2rem;
+            color: #FFFFFF;
+            background-color: var(--bg-bottom); /* Golden Yellow Button */
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        summary::-webkit-details-marker {
+            display: none; /* Hide arrow in Safari */
         }
 
         summary:hover {
-            background-color: var(--accent-color);
-            color: #ffffff;
+            background-color: #fcc269; /* Lighter yellow on hover */
+            box-shadow: var(--glow-hover);
         }
 
+        /* The PDF iframe container */
         .pdf-viewer {
             width: 100%;
-            height: 500px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
+            height: 500px; /* Adjust height as needed */
+            border: none;
+            border-radius: 10px;
             margin-top: 1rem;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
 
-        /* Responsive Design */
-        @media (max-width: 600px) {
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+
             header {
                 flex-direction: column;
                 text-align: center;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .header-text h1 {
+                font-size: 2.2rem;
             }
 
             .social-links {
                 justify-content: center;
             }
 
-            .pdf-viewer {
-                height: 350px;
+            .glass-card {
+                padding: 1.5rem;
+            }
+
+            .headshot {
+                width: 130px;
+                height: 130px;
             }
         }
     </style>
@@ -193,31 +261,33 @@
 <body>
 
     <div class="container">
-        <!-- Header / Profile Info -->
+        <!-- --- HEADER / PROFILE --- -->
         <header>
-            <!-- Ensure your image is named 'headshot.jpg' and saved in the same folder -->
-            <img src="headshot.jpg" alt="Reina Dean Headshot" class="headshot">
+            <div class="headshot-container">
+                <!-- Ensure your image is named 'headshot.jpg' in the same folder -->
+                <img src="headshot.jpg" alt="Reina Dean" class="headshot">
+            </div>
             <div class="header-text">
                 <h1>Reina Dean</h1>
-                <p>Student</p>
+                <p class="title">Student</p>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/reinadean" target="_blank">LinkedIn</a>
-                    <a href="https://www.tiktok.com/@reinaad5?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+                    <a href="https://www.linkedin.com/in/reinadean" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.tiktok.com/@reinaad5?is_from_webapp=1&sender_device=pc" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </header>
 
-        <!-- About Section -->
-        <section>
-            <h2>About Me</h2>
+        <!-- --- ABOUT SECTION --- -->
+        <section id="about" class="glass-card">
+            <h2 class="section-title">About Me</h2>
             <p>
                 Hello! I am a first-year marketing major hoping to work in the digital beauty marketing field. I am currently looking for experience in that field.
             </p>
         </section>
 
-        <!-- Skills Section -->
-        <section>
-            <h2>Skills & Expertise</h2>
+        <!-- --- SKILLS SECTION (Glowing Tags) --- -->
+        <section id="skills" class="glass-card">
+            <h2 class="section-title">Skills & Expertise</h2>
             <ul class="skills-list">
                 <li class="skill-tag">Graphic Design</li>
                 <li class="skill-tag">Photography</li>
@@ -228,36 +298,36 @@
             </ul>
         </section>
 
-        <!-- Featured Projects Section -->
-        <section>
-            <h2>Featured Projects</h2>
+        <!-- --- PROJECTS SECTION --- -->
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 
                 <!-- Project 1 -->
-                <div class="project-card">
+                <div class="project-card glass-card">
                     <h3 class="project-heading">Streetwear Photography Project</h3>
                     <p class="project-desc">A showcase of streetwear photography focused on visual storytelling, aesthetics, and brand identity.</p>
                     
                     <details>
                         <summary>View Project PDF</summary>
-                        <!-- Make sure 'streetwear-photography.pdf' is uploaded to your main folder -->
-                        <object data="https://github.com/ReinaDean/ReinaDean.github.io/blob/09180049d954c7bd2b721a589917bc7c2caa462d/streetwear.pdf" type="application/pdf" class="pdf-viewer">
-                            <p>Your browser doesn't support inline PDFs. <a href="streetwear.pdf" target="_blank">Click here to open or download the PDF.</a></p>
-                        </object>
+                        <!-- Ensure 'streetwear-photography.pdf' is in the same folder -->
+                        <iframe src="streetwear.pdf#toolbar=0" class="pdf-viewer" loading="lazy">
+                            <p>This browser doesn't support embedded PDFs. <a href="streetwear.pdf" target="_blank">Download PDF.</a></p>
+                        </iframe>
                     </details>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card">
+                <div class="project-card glass-card">
                     <h3 class="project-heading">Aerie Mock Direct Mail Marketing</h3>
                     <p class="project-desc">A targeted mock direct mail marketing campaign designed for Aerie, highlighting visual layout and promotional strategies.</p>
                     
                     <details>
                         <summary>View Project PDF</summary>
-                        <!-- Make sure 'aerie-marketing.pdf' is uploaded to your main folder -->
-                        <object data="aerie-marketing.pdf" type="application/pdf" class="pdf-viewer">
-                            <p>Your browser doesn't support inline PDFs. <a href="aerie-marketing.pdf" target="_blank">Click here to open or download the PDF.</a></p>
-                        </object>
+                        <!-- Ensure 'aerie-marketing.pdf' is in the same folder -->
+                        <iframe src="aerie-marketing.pdf#toolbar=0" class="pdf-viewer" loading="lazy">
+                            <p>This browser doesn't support embedded PDFs. <a href="aerie-marketing.pdf" target="_blank">Download PDF.</a></p>
+                        </iframe>
                     </details>
                 </div>
 
